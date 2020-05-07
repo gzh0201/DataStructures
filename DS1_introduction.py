@@ -144,22 +144,29 @@
           函数2：O(n)     设置一个临时变量，更优化的算法就是把这个临时变量设置成列表中的第一个元素
 '''
 
-my_list = [1000,3,4,9,6,8,100]
-def get_min(my_list):
-    for i in range(len(my_list)):
-        for j in range(len(my_list)):
-            if my_list[i] > my_list[j]:
-                break
-            else:
-                return my_list[i]
-print(get_min(my_list))
+my_list = [10,40,9,6,8,100]
+
+
+def getMin(source_list):
+    #两层循环，数量级是n²
+   for i in range(len(source_list)):
+      for j in range(len(source_list)):
+         #拿第i个数，和其他所有的数进行比较，如果遇到比自己小的，
+         #就说明自己不是最小的，也就不用继续比下去了,break退出当前循环
+         if source_list[i] > source_list[j]: 
+            break
+        #如果没有从break出口出去，就说明没有遇到比自己小的
+        #自己就是最小的，所有要返回当前数字
+      else:
+         return  source_list[i]
+print(getMin(my_list))
 
 
 def get_min2(my_list):
-    min_num = my_list[0]
-    for i in range(len(my_list)):
-        if my_list[i] < min_num:
-            min_num = my_list[i]
-    return min_num
+   min_num = my_list[0]
+   for i in range(len(my_list)):
+      if my_list[i] < min_num:
+         min_num = my_list[i]
+   return min_num
 
 print(get_min2(my_list))
