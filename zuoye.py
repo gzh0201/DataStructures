@@ -72,68 +72,68 @@
 # 3．将上述的中缀表达式转化为后缀表达式（使用全括号的方法）。 
 
 
-def in2post(inOrder):
-    pool = ''
-    stack = ''
-    for i in inOrder:
-        ret = proc(i,switch(i),stack,pool)
-        stack = ret['stack']
-        pool = ret['pool']
-    if stack != '':
-        stack = stack[::-1]
-    return pool+stack
+# def in2post(inOrder):
+#     pool = ''
+#     stack = ''
+#     for i in inOrder:
+#         ret = proc(i,switch(i),stack,pool)
+#         stack = ret['stack']
+#         pool = ret['pool']
+#     if stack != '':
+#         stack = stack[::-1]
+#     return pool+stack
 
-def switch(c):
-    operator1 = '+-'
-    operator2 = '*/'
-    operator3 = ')'
-    operator4 = '('
-    num = 'abcdefg'
-    if c in num:
-        return 0
-    if c in operator1:
-        return 1
-    if c in operator2:
-        return 2
-    if c in operator3:
-        return 3
-    if c in operator4:
-        return 4
-def proc(c,op,stack,pool):
-    top = len(stack)-1
+# def switch(c):
+#     operator1 = '+-'
+#     operator2 = '*/'
+#     operator3 = ')'
+#     operator4 = '('
+#     num = 'abcdefg'
+#     if c in num:
+#         return 0
+#     if c in operator1:
+#         return 1
+#     if c in operator2:
+#         return 2
+#     if c in operator3:
+#         return 3
+#     if c in operator4:
+#         return 4
+# def proc(c,op,stack,pool):
+#     top = len(stack)-1
 
-    if op == 0:#abcdefg
-        pool += c
-    if op == 2 or op==1:#*
-        if top == -1:
-            stack += c
-        elif switch(stack[top]) < op or stack[top] == '(':
-            stack += c
-        else:
-            while top != -1 and switch(stack[top]) >= op and switch(stack[top])<switch(')'):
-                pool += stack[top]
-                top -= 1
-            if top != -1:
-                stack = stack[0:top+1]
-            else:
-                stack = ''
-            stack += c
-    if op == 3:#)
-        while top!= -1 and stack[top] != '(':
-            pool += stack[top]
-            top -= 1
-        stack = stack[0:top]
-    if op == 4:#(
-        stack += c
-    ret = {
-        'stack':stack,
-        'pool':pool
-    }
-    return ret
+#     if op == 0:#abcdefg
+#         pool += c
+#     if op == 2 or op==1:#*
+#         if top == -1:
+#             stack += c
+#         elif switch(stack[top]) < op or stack[top] == '(':
+#             stack += c
+#         else:
+#             while top != -1 and switch(stack[top]) >= op and switch(stack[top])<switch(')'):
+#                 pool += stack[top]
+#                 top -= 1
+#             if top != -1:
+#                 stack = stack[0:top+1]
+#             else:
+#                 stack = ''
+#             stack += c
+#     if op == 3:#)
+#         while top!= -1 and stack[top] != '(':
+#             pool += stack[top]
+#             top -= 1
+#         stack = stack[0:top]
+#     if op == 4:#(
+#         stack += c
+#     ret = {
+#         'stack':stack,
+#         'pool':pool
+#     }
+#     return ret
 # inOrder = 'a+b*c-d*e+f/g'
 # inOrder = '*+AB*+CD+EF'
-for inOrder in ['*+AB*+CD+EF','+A*+BC+DE','+*A*B*CD+EF']:
-    print(in2post(inOrder))
+# for inOrder in ['*+AB*+CD+EF','+A*+BC+DE','+*A*B*CD+EF']:
+#     print(in2post(inOrder))
 
 # 4．采用直接的转化算法将上述的中缀表达式转化为后缀表达式。写出转化时栈的实时变化。 
 
@@ -217,3 +217,14 @@ for inOrder in ['*+AB*+CD+EF','+A*+BC+DE','+*A*B*CD+EF']:
 # 15. 修改列表使它允许重复。有哪些方法将受到这种变化的影响？ 
 # 16. 实现无序列表类的__str__方法。对于列表而言，什么是一个好的字符串形式的表现？ 
 # 17. 实现__str__方法，使列表以 Python
+
+ticket = 0  #1代表有车票  0代表没有车票
+knife = 4   #3代表没有刀，4代表有刀
+if knife==3:
+    print('没有刀，可以进站')
+    if ticket==1:
+        print('有票，可以坐车')
+    else:
+        print('没有票，请前往售票口买票')
+else:
+    print('有刀，请把刀给了安检人员，否则不能进站')
